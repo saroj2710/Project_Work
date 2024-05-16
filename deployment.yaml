@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project-deployment
+  namespace: project
+  labels:
+    app: project
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: project
+  template:
+    metadata:
+      labels:
+        app: project
+    spec:
+      containers:
+      - name: project
+        image: docker.io/dtg2468/project:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: project-volume
+          mountPath: /var/www/html
+      volumes:
+      - name: project-volume
+        persistentVolumeClaim:
+          claimName: project-pvc
