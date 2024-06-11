@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: project
-        image: docker.io/dtg2468/project:v1
+        image: docker.io/sarojkumawat/project:v1
         imagePullPolicy: Always
         ports:
         - containerPort: 80
